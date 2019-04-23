@@ -1,10 +1,23 @@
+require('dotenv').config({
+  path: '.env',
+});
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Mary Choueiter`,
+    description: `Welcome to Mary Choueiter's website.`,
+    author: `Jacob Silver`,
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        typekit: {
+          families: ['fertigo-pro', 'serif']
+        }
+      }
+    },
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -15,6 +28,14 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/ // See below to configure properly
+        }
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -27,6 +48,26 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: 'gatsby-source-wordpress',
+      options: {
+        baseUrl: 'jacobsilver274041011.wordpress.com',
+        protocol: 'https',
+        hostingWPCOM: true,
+        useACF: false,
+        auth: {
+          wpcom_app_clientSecret: process.env.WORDPRESS_SECRET,
+          wpcom_app_clientId: process.env.WORDPRESS_CLIENTID,
+          wpcom_user: process.env.WORDPRESS_USERNAME,
+          wpcom_pass: process.env.WORDPRESS_PASSWORD,
+        },
+        verboseOutput: false,
+        searchAndReplaceContentUrls: {
+          sourceUrl: 'jacobsilver274041011.wordpress.com',
+          replacementUrl: 'https://localhost:8000',
+        },
+      },
+},
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
