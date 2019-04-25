@@ -1,10 +1,12 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React from "react";
+import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import Behance from '../assets/behance.svg';
 import Linkedin from '../assets/linkedin.svg';
 import Instagram from '../assets/instagram.svg';
+
 
 const StyledHeader = styled.header`
   background: white;
@@ -69,6 +71,10 @@ const StyledInstagram = styled(props => <Instagram {...props}/>)`
 `;
 
 const Header = ({ siteTitle }) => (
+  <>
+  <Helmet>
+    <link rel="stylesheet" href="https://use.typekit.net/vxc4zkr.css"></link>
+  </Helmet>
   <StyledHeader>
     <Container>
       <Logo>
@@ -84,6 +90,7 @@ const Header = ({ siteTitle }) => (
         <StyledNavLink to="https://www.linkedin.com/in/marychoueiter"><StyledInstagram fill="grey"/></StyledNavLink>
     </Container>
   </StyledHeader>
+  </>
 )
 
 Header.propTypes = {

@@ -21,7 +21,7 @@ exports.createPages = ({ graphql, actions, }) => {
     graphql(
       `
             {
-              allWordpressPost {
+              allWordpressPost(filter: { tags: { elemMatch: {name: {eq: "project"}}}}) {
                 edges {
                   node {
                     id

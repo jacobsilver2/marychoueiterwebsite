@@ -30,6 +30,9 @@ const StyledGridItem = styled.div`
   .titleText {
     font-size: 30px;
     position: relative;
+    font-family: fertigo-pro, serif;
+    font-style: normal;
+    font-weight: 400;
   }
   .overlay {
     position: absolute;

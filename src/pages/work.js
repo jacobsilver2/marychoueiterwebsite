@@ -1,12 +1,12 @@
 import React from 'react';
-import Img from 'gatsby-image';
 import { StaticQuery, graphql, } from 'gatsby';
 import Layout from '../components/layout';
 import GridItem from '../components/GridItem';
+import { Spring } from 'react-spring/renderprops';
 
 const BlogAllPostQuery = graphql`
 query BlogAllPostQuery {
-      allWordpressPost(sort: { fields: [date], order:ASC }) {
+      allWordpressPost(filter: { tags: { elemMatch: {name: {eq: "project"}}}} sort: { fields: [date], order:ASC }) {
         edges {
           node {
             date(formatString: "DD, MMM YYYY")
@@ -19,19 +19,20 @@ query BlogAllPostQuery {
     }
 `;
 
-
-
-
-
 const Blog = () => (
       <StaticQuery
         query={BlogAllPostQuery}
         render={data => (
-        <Layout>
-          {data.allWordpressPost.edges.map(({ node }) => (
-             <GridItem key={node.slug} slug={node.slug} imageURL={node.jetpack_featured_media_url} title={node.title} />
-          ))}
-      </Layout>
+        <Spring from={{ opacity: 0 }} to={{ opacity: 1 }}>
+          {spring => 
+          <div style={spring}>
+            <Layout>
+              {data.allWordpressPost.edges.map(({ node }) => (
+                <GridItem key={node.slug} slug={node.slug} imageURL={node.jetpack_featured_media_url} title={node.title} />
+              ))}
+            </Layout>
+          </div>
+        }</Spring>
       )}/>
 );
 

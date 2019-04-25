@@ -15,17 +15,20 @@ const GridContainer = styled.div`
   padding-top: 0;
 `;
 
+ const siteTitleQuery = graphql`
+  query SiteTitleQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;
+
+
 const Layout = ({ children }) => (
   <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
+    query={siteTitleQuery}
     render={data => (
       <>
         <Header siteTitle={data.site.siteMetadata.title} />
