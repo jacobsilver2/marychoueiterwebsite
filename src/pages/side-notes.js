@@ -1,8 +1,7 @@
 import React from 'react';
-import { StaticQuery, graphql, } from 'gatsby';
+import { StaticQuery, graphql, Link} from 'gatsby';
 import Layout from '../components/layout';
-import GridItem from '../components/GridItem';
-import { Spring } from 'react-spring/renderprops';
+// import GridItem from '../components/GridItem';
 
 const BlogAllSidenotesQuery = graphql`
 query BlogAllSidenotesQuery {
@@ -23,16 +22,18 @@ const Blog = () => (
       <StaticQuery
         query={BlogAllSidenotesQuery}
         render={data => (
-        <Spring from={{ opacity: 0 }} to={{ opacity: 1 }}>
-          {spring => 
-          <div style={spring}>
             <Layout>
               {data.allWordpressPost.edges.map(({ node }) => (
-                <GridItem key={node.slug} slug={node.slug} imageURL={node.jetpack_featured_media_url} title={node.title} />
+                <div key={node.slug} className="container">
+                  <div className="row">
+                    <h3>
+                      <Link to={`/side-notes/${node.slug}`} dangerouslySetInnerHTML={{ __html: node.title }}/>
+                    </h3>
+                    <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
+                  </div>
+                </div>
               ))}
             </Layout>
-          </div>
-        }</Spring>
       )}/>
 );
 

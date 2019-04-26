@@ -50,21 +50,25 @@ const StyledNavLink = styled(props => <Link {...props}/>)`
   :hover {
     color: black;
   }
+
 `;
 
 const StyledBehance = styled(props => <Behance {...props}/>)`
+  margin: auto 10px;
   :hover {
     fill: black;
   }
 `;
 
 const StyledLinkedIn = styled(props => <Linkedin {...props}/>)`
+  margin: auto 10px;
   :hover {
     fill: black;
   }
 `;
 
 const StyledInstagram = styled(props => <Instagram {...props}/>)`
+  margin: auto 10px;
   :hover {
     fill: black;
   }
@@ -85,9 +89,9 @@ const Header = ({ siteTitle }) => (
         <StyledNavLink to="/work">Work</StyledNavLink>
         <StyledNavLink to="/side-notes">Side Notes</StyledNavLink>
         <StyledNavLink to="/about">About</StyledNavLink>
-        <StyledNavLink to="https://www.behance.net/MaryChoueiter"><StyledBehance fill="grey"/></StyledNavLink>
-        <StyledNavLink to="https://www.instagram.com/tahhiyakaryoka/"><StyledLinkedIn fill="grey"/></StyledNavLink>
-        <StyledNavLink to="https://www.linkedin.com/in/marychoueiter"><StyledInstagram fill="grey"/></StyledNavLink>
+        <a href="https://www.behance.net/MaryChoueiter"><StyledBehance fill="grey"/></a>
+        <a href="https://www.instagram.com/tahhiyakaryoka/"><StyledLinkedIn fill="grey"/></a>
+        <a href="https://www.linkedin.com/in/marychoueiter"><StyledInstagram fill="grey"/></a>
     </Container>
   </StyledHeader>
   </>

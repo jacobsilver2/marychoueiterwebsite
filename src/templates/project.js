@@ -1,8 +1,8 @@
 import React from 'react';
 import PropType from 'prop-types';
 import Helmet from 'react-helmet';
-import Img from 'gatsby-image';
-import { graphql, Link } from 'gatsby';
+// import Img from 'gatsby-image';
+import { graphql } from 'gatsby';
 import Layout from '../components/projectLayout';
 
 // const stripHtml = (html) => {
@@ -15,6 +15,7 @@ import Layout from '../components/projectLayout';
 
 
 const PostTemplate = (props) => {
+  console.log(props)
   const { data: { wordpressPost: post } } = props;
   return (
     <Layout>
