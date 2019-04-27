@@ -5,16 +5,16 @@ function createProjectPages(result, createPage) {
   const projectPostTemplate = path.join(__dirname, `./src/templates/project.js`);
   const projectPosts = result.data.projects.edges;
   projectPosts.forEach((node, index) => {
-    const previous = index === projectPosts.length - 1 ? null : projectPosts[index + 1].node;
-    const next = index === 0 ? null : projectPosts[index - 1].node;
+    // const previous = index === projectPosts.length - 1 ? null : projectPosts[index + 1].node;
+    // const next = index === 0 ? null : projectPosts[index - 1].node;
     createPage({
-      path: `/work/${node.slug}`,
+      path: `/work/${node.node.slug}`,
       component: slash(projectPostTemplate),
       context: {
-        id: node.id,
-        slug: node.slug,
-        previous,
-        next,
+        id: node.node.id,
+        // slug: node.slug,
+        // previous,
+        // next,
       },
     });
   });
