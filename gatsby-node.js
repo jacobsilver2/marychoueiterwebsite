@@ -1,8 +1,5 @@
-// const Promise = require('bluebird');
-
-const { graphqlForProjects } = require("./create-pages-projects");
-const { graphqlForSideNotes }  = require("./create-pages-sidenotes");
-// const { createFilePath } = require(`gatsby-source-filesystem`);
+const { graphqlForProjects } = require("./createPages/create-pages-projects");
+const { graphqlForSideNotes }  = require("./createPages/create-pages-sidenotes");
 
 function createIndividualPages(actions, graphql) {
   const { createPage } = actions;
@@ -15,16 +12,3 @@ function createIndividualPages(actions, graphql) {
 exports.createPages = ({ graphql, actions }) => {
   return createIndividualPages(actions, graphql);
 }
-
-// exports.onCreateNode = ({ node, actions, getNode }) => {
-//   const { createNodeField } = actions;
-
-//   if (node.internal.type === `allWordpressPost`) {
-//     const value = createFilePath({ node, getNode })
-//     createNodeField({
-//       name: `slug`,
-//       node,
-//       value
-//     })
-//   }
-// }

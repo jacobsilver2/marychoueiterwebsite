@@ -2,16 +2,16 @@ const path = require('path');
 const slash = require('slash');
 
 function createProjectPages(result, createPage) {
-  const projectPostTemplate = path.join(__dirname, `./src/templates/project.js`);
+  const projectPostTemplate = path.join(__dirname, `../src/templates/project.js`);
   const projectPosts = result.data.projects.edges;
-  projectPosts.forEach((node, index) => {
+  projectPosts.forEach((edge, index) => {
     // const previous = index === projectPosts.length - 1 ? null : projectPosts[index + 1].node;
     // const next = index === 0 ? null : projectPosts[index - 1].node;
     createPage({
-      path: `/work/${node.node.slug}`,
+      path: `/work/${edge.node.slug}`,
       component: slash(projectPostTemplate),
       context: {
-        id: node.node.id,
+        id: edge.node.id,
         // slug: node.slug,
         // previous,
         // next,
@@ -42,7 +42,6 @@ function graphqlForProjects(graphql, createPage) {
     if (result.errors) {
       throw result.errors;
     }
-
     createProjectPages(result, createPage)
   });
 }

@@ -2,16 +2,16 @@ const path = require('path');
 const slash = require('slash');
 
 function createSideNotesPages(result, createPage) {
-  const sideNotesPostTemplate = path.join(__dirname, `./src/templates/blog.js`);
+  const sideNotesPostTemplate = path.join(__dirname, `../src/templates/blog.js`);
   const sideNotesPosts = result.data.sidenotes.edges;
-  sideNotesPosts.forEach((node, index) => {
+  sideNotesPosts.forEach((edge, index) => {
     // const previous = index === sideNotesPosts.length - 1 ? null : sideNotesPosts[index + 1].node;
     // const next = index === 0 ? null : sideNotesPosts[index - 1].node;
     createPage({
-      path: `/side-notes/${node.node.slug}`,
+      path: `/side-notes/${edge.node.slug}`,
       component: slash(sideNotesPostTemplate),
       context: {
-        id: node.node.id,
+        id: edge.node.id,
         // previous,
         // next,
       },
